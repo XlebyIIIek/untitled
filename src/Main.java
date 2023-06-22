@@ -78,7 +78,7 @@ public class Main {
         int number_1 = 0;
         int number_2 = 0;
         //Проверяем выражение
-        if (expression.length > 3) {
+        if (expression.length != 3) {
             try {
                 throw new Exception("Кол-во элементов больше чем ожидалось");
             } catch (Exception exception) {
