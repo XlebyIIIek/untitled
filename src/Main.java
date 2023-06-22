@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import java.io.IOException;
+
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -21,7 +21,7 @@ public class Main {
         }
 
 
-        //Проверяем числа (вдруг римские)
+        //Проверяем числа (вдруг римские) и сразу переводим в арабские
         String[] rim_number = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
         int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         String number_1 = expression[0];
@@ -42,7 +42,8 @@ public class Main {
                 if (convert_number_1 - convert_number_2 < 1 && sign.equals("-")){
                     return throw_exception("В римской системе нет отрицательных чисел и 0");
                 }
-                calculate_rim_expression(convert_number_1, convert_number_2, sign);
+
+                translation_to_rim(calculate_answer(convert_number_1, convert_number_2, sign));
                 return true;
             }
             else {
@@ -63,7 +64,8 @@ public class Main {
         }
         //Проверяем числа чтобы были от 1 до 10
         if (check_numbers(convert_number_1, convert_number_2)){
-            System.out.println(calculate_answer(convert_number_1,convert_number_1, sign));
+            System.out.println("aa");
+            System.out.println(calculate_answer(convert_number_1,convert_number_2, sign));
         }
         else {
             throw_exception("Числа должны быть от 1 до 10");
@@ -81,10 +83,10 @@ public class Main {
             return true;
         }
     }
-    public static void calculate_rim_expression(int number_1, int number_2, String sign){
+    public static void translation_to_rim(int int_answer){
+        //Перевод ответа в римскую систему
         String[] rim_numbers = {"C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
         int[] numbers = {100, 90, 50, 40, 10, 9, 5, 4, 1};
-        int int_answer = calculate_answer(number_1, number_2, sign);
         String rim_answer = "";
         for (int i = 0; i < rim_numbers.length; i++){
             while (int_answer - numbers[i] > -1){
